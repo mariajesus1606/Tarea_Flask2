@@ -8,5 +8,13 @@
 <body>
     <h1>Biblioteca</h1>
     <h2>María Jesús Bohíguez Pérez</h2>
+<!--Lista de enlaces que muestran los títulos de todos los libros y que lleva a la ruta de información de cada libro-->
+    <ul>
+		{% for libro in lista_libros -%}
+            {% if libro.isbn %}    
+                <li><a href="/libro/{{libro.isbn}}">{{libro.title}}</a></li><br>
+            {% endif %}
+		{% endfor -%}
+	</ul>
 </body>
 </html>
