@@ -1,1 +1,56 @@
 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+<!--Muestra un título (nombre del libro)-->
+    <title>{{detalle_libro.title}}</title>
+    <ul>
+        <li style = "padding: 0;"><a href= "/">Volver a la página principal</a></li>
+    </ul>
+</head>
+<body>
+    <h1>{{detalle_libro.title}}</h1>
+<!--Muestra la imagen del libro-->
+
+    {% if detalle_libro.thumbnailUrl %}
+        <img src="{{detalle_libro.thumbnailUrl}}" alt="Imagen"/>
+    {% endif %}
+
+<!--Muestra el número de páginas-->
+
+    <h3 style = "color: red;"> Nº de páginas: {{detalle_libro.pageCount}}</h3><br>
+
+<!--Muestra la descripción-->
+    <h4 style = "color: blue;"><strong>Descripción:</strong></h4>
+    <p> {{detalle_libro.shortDescription}}</p><br>
+
+<!--Muestra los autores-- (Recorremos la lista)-->
+    {% if detalle_libro.authors %}
+        <h4 style = "color: blue;"><strong>Autores:</strong></h4>
+        {% for autor in detalle_libro.authors %}
+            <ul>
+                <li><p>{{autor}}</p></li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+
+<!-- Muestra las categorías-->
+
+    {% if detalle_libro.categories %}
+        <h4 style = "color: blue;"><strong>Categorías:</strong></h4>
+        {% for categoria in detalle_libro.categories %}
+            <ul>
+                <li><a href="/categoria/{{categoria}}">{{categoria}}</a></li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+
+<!-- Si el status es MEAP , mensaje: Este libro no se ha publicado -->
+
+{% if detalle_libro.status == "MEAP" %} 
+    <p style = "color: red"><strong> ESTE LIBRO NO SE HA PUBLICADO</strong></p>
+{% endif %}
+</body>
+</html>
