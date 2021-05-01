@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+<!--Muestra un título (nombre del libro)-->
+    <title>{{categoria}}</title>
+    <ul>
+        <li style = "padding: 0;"><a href= "/">Volver a la página principal</a></li>
+    </ul>
+</head>
+<body>
+<!-- Muestra los libros por dicha categoría-->
+<h1>{{categoria}}</h1>
+<h2>Libros de esta categoría: </h2>
+<ul>
+    {% for category in lista_libros -%}
+        {% if categoria in category.categories %}
+            <li><a href= "/libro/{{category.isbn}}">{{category.title}}</a></li><br>
+        {% endif %}
+    {% endfor -%}
+</ul>
 
+</body>
+</html>
